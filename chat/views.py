@@ -6,8 +6,12 @@ from django.contrib import messages
 
 
 def main(request): 
-    # user = User.objects.create_user()
-    return render(request, template_name= 'main.html')
+    context = {'username' : 'Anonym'}
+    if request.user.is_authenticated:
+        username = request.user.username 
+        context['username'] = username 
+
+    return render(request, template_name= 'main.html', context= context)
 
 
 def register(request):
