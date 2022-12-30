@@ -6,7 +6,17 @@
         <h1>
             Hello, {{username}}! 
         </h1>
+        <div class="chat__item__container" id="id_chat_item_container" style="font-size: 20px">
+            <br />
+            <input type="text" id="id_message_send_input" />
+            <button type="submit" id="id_message_send_button">Send Message</button>
+            <br />
+            <br />
+        </div>
     </div>
+
+    {% load static %}
+    <script type="text/javascript" src="{% static  'scripts/chat_script.js' %}"></script>
     
 </body>
 {% endblock %}
