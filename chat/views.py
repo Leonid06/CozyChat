@@ -11,9 +11,14 @@ def main(request):
 
 
 def register(request):
-    # if request.method == "POST" :
-    #     form =
-    return 
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        newUser = User.objects.create_user(username= username, password= password)
+        newUser.save()
+        login(request, newUser)
+        return redirect('main')   
+    return render(request, template_name= 'auth/register.html')
 
 def login_user(request):
     if request.method == "POST":
@@ -25,7 +30,8 @@ def login_user(request):
             login(request, user)
             return redirect('main')
         else:
-            return redirect('main')
+            messages.error(request,'username or password not correct')
+            return redirect('login_user')
     else:
          return render(request, template_name= 'auth/login.html')
    
