@@ -1,10 +1,16 @@
-const chatSocket = new WebSocket("ws://" + window.location.host + "/") ;
+const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/socket-server") ;
+
+const username = JSON.parse(document.getElementById('username').textContent);
 chatSocket.onopen = function(e){
     console.log("connection was set up successfully")
 };
 chatSocket.onclose = function(e){
     console.log("connection was closed");
 };
+
+chatSocket.onerror = function(e){
+    console.log(e)
+}
 
 let messageInputSelector = document.querySelector("#id_message_send_input");
 let messageButtonSelector = document.querySelector("#id_message_send_button");
@@ -20,7 +26,7 @@ messageInputSelector.onkeyup = function(e) {
 
 messageButtonSelector.onclick = function(e){
     let messageInput = messageInputSelector.value;
-    chatSocket.send(JSON.stringify({message: messageInput, username: "{{username}}"}));
+    chatSocket.send(JSON.stringify({message: messageInput, username: username}));
 };
 
 chatSocket.onmessage = function (e) {

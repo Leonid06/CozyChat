@@ -16,6 +16,7 @@
     </div>
 
     {% load static %}
+    {{ username|json_script:"username" }}
     <script type="text/javascript" src="{% static  'scripts/chat_script.js' %}"></script>
     
 </body>
