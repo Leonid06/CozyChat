@@ -14,7 +14,8 @@ chatSocket.onerror = function(e){
 
 let messageInputSelector = document.querySelector("#id_message_send_input");
 let messageButtonSelector = document.querySelector("#id_message_send_button");
-let chatItemContainer = document.querySelector("#id_chat_item_container")
+// let chatItemContainer = document.querySelector("#id_chat_item_container")
+let mainContainer = document.querySelector("#id_main_container")
 
 messageInputSelector.focus();
 
@@ -31,8 +32,16 @@ messageButtonSelector.onclick = function(e){
 
 chatSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
-    var div = document.createElement("div");
-    div.innerHTML = data.username + " : " + data.message;
+    var chatBubble = document.createElement("div");
+    chatBubble.setAttribute('class', 'bubbleWrapper')
+    chatBubble.innerHTML = `
+    <div class="inlineContainer other">
+    <div class="otherBubble other">
+        ${data.message}
+    </div>
+    </div><span class="other">08:41</span>
+    `
     messageInputSelector.value = "";
-    chatItemContainer.appendChild(div);
+    mainContainer.appendChild(chatBubble)
+    // chatItemContainer.appendChild(div);
 }
