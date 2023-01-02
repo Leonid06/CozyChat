@@ -39,7 +39,7 @@ chatSocket.onmessage = function (e) {
     <div class="otherBubble other">
         ${data.message}
     </div>
-    </div><span class="other">08:41</span>
+    </div><span class="other">${data.timestamp} ${data.username}</span>
     `
     messageInputSelector.value = "";
     mainContainer.appendChild(chatBubble)
