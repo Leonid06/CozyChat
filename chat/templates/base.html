@@ -25,9 +25,16 @@
           <li class="nav-item">
             <a class="nav-link" href="register_user">Register</a>
           </li>
+
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="login_user">Log out</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="login_user">Log in</a>
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>

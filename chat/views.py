@@ -37,7 +37,9 @@ def login_user(request):
             messages.error(request,'username or password not correct')
             return redirect('login_user')
     else:
+         user = request.user  
+         if user.is_authenticated :
+             logout(request)
          return render(request, template_name= 'auth/login.html')
    
-def logout(request): 
-    return 
+

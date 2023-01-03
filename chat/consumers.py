@@ -6,8 +6,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         
 
     async def connect(self):
-
-
         self.roomGroupName = "test"
   
         await self.channel_layer.group_add(
